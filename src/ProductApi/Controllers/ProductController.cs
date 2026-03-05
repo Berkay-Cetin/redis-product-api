@@ -32,7 +32,7 @@ public class ProductController : ControllerBase
 
         var products = await _context.Products.ToListAsync();
 
-        await _cache.SetAsync(cacheKey, products);
+        await _cache.SetAsync(cacheKey, products, 5);
 
         return Ok(products);
     }
@@ -53,7 +53,7 @@ public class ProductController : ControllerBase
         if (product == null)
             return NotFound();
 
-        await _cache.SetAsync(cacheKey, product);
+        await _cache.SetAsync(cacheKey, product, 5);
 
         return Ok(product);
     }
